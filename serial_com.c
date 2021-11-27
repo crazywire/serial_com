@@ -12,7 +12,7 @@
 #define UBRR F_CPU/16/BAUD-1 //equation to find the value of UBRR0 register
 
 
-void USART_init()
+void init_uart()
 {
 	UCSR0B |= (1<<RXEN0 | 1<<TXEN0); //enable receiver and transmitter
 	UBRR0 = UBRR; //set baud rate
@@ -32,7 +32,7 @@ char read_char()
 
 int main(void)
 {
-	USART_init();
+	init_uart();
     while (1) 
     {
 		write_char(read_char());
