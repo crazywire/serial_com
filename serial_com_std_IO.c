@@ -10,7 +10,18 @@
 #define F_CPU 16000000
 #define BAUD 57600 //baud rate
 #define UBRR F_CPU/16/BAUD-1 //equation to find the value of UBRR0 register
+
+#define __FLASH_MEMORY__   //use flash memory
+
+#ifndef __FLASH_MEMORY__
+
+#define  eprinf(args...) printf(args)
+
+#else
+
 #define eprinf(s, ...) printf_P(PSTR(s), ##__VA_ARGS__) //use flash memory to store format strings
+
+#endif
 
 static int uart_putchar(char c, FILE *stream);
 static int uart_getchar(FILE* stream);
